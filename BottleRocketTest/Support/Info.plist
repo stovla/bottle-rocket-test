@@ -60,5 +60,23 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key></key>
+			<string></string>
+		</dict>
+		<key>NSAllowsArbitraryLoadsUsageDescription</key>
+		<dict>
+			<key>NSATSExceptionUsage</key>
+			<dict>
+				<key>NSATSExceptionUsageUserChosenContent</key>
+				<false/>
+			</dict>
+		</dict>
+	</dict>
+	<key></key>
+	<string></string>
 </dict>
 </plist>
