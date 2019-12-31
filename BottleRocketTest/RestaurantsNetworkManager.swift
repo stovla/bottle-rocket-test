@@ -8,8 +8,6 @@
 
 import Foundation
 
-let restaurantUrlString = "https://s3.amazonaws.com/br-codingexams/restaurants.json"
-
 struct RestaurantsNetworkManager {
     
     func getAllRestaurants(_ completion: @escaping ([Restaurant]) -> Void) {

@@ -8,18 +8,18 @@
 
 import UIKit
 
-class LunchViewController: UIViewController {
+class LunchViewController: UICollectionViewController {
     
     private var restaurants = [Restaurant]()
-    let manager = RestaurantsNetworkManager()
-    
-    @IBOutlet weak var collectionView: UICollectionView!
+    private let restaurantManager = RestaurantsManager()
+
     private var dataSource = UICollectionViewDiffableDataSource<Section, Restaurant>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let restMng = RestaurantsNetworkManager()
+        restaurants = restaurantManager.getRestaruants()
+        
         restMng.getAllRestaurants { restaurants in
             restaurants.forEach { restaurant in
                 print(restaurant)
@@ -29,15 +29,15 @@ class LunchViewController: UIViewController {
     
     private func configureDataSource() {
         collectionView.dataSource = dataSource;
-        dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, restaurant) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-            // cell data
-
-            return cell
-        })
+//        let dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, restaurant) -> UICollectionViewCell? in
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+//            // cell data
+//
+//            return cell
+//        })
     }
     
-
+    
     /*
     // MARK: - Navigation
 
