@@ -13,45 +13,79 @@ class LunchViewController: UICollectionViewController {
     private var restaurants = [Restaurant]()
     private let restaurantManager = RestaurantsManager()
 
-    private var dataSource = UICollectionViewDiffableDataSource<Section, Restaurant>()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        restaurants = restaurantManager.getRestaruants()
+        navigationItem.title = "Lynch Tyme"
+        navigationController?.navigationBar.tintColor = .white
+        collectionView.backgroundColor = UIColor(named: "MainBrandColor")
         
-        restMng.getAllRestaurants { restaurants in
-            restaurants.forEach { restaurant in
-                print(restaurant)
+        setTabBarFont()
+        
+        collectionView.register(RestaurantCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        DispatchQueue.global().async {
+            do {
+                guard let url = URL(string: restaurantUrlString) else { return }
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                
+                let result = try decoder.decode(Restaurants.self, from: data)
+                
+                DispatchQueue.main.async { [weak self] in
+                    self?.restaurants = result.restaurants
+                    print(result.restaurants)
+                    self?.collectionView.reloadData()
+                }
+            } catch {
+                print(error)
             }
         }
     }
     
-    private func configureDataSource() {
-        collectionView.dataSource = dataSource;
-//        let dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, restaurant) -> UICollectionViewCell? in
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-//            // cell data
-//
-//            return cell
-//        })
+    func setTabBarFont() {
+        guard let font = UIFont.init(name: "AvenirNext-Regular", size: 10) else { return }
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        guard let cell = sender as? RestaurantCollectionViewCell else { return }
+        guard let controller = segue.destination as? DetailsViewController else { return }
+        controller.restaurant = cell.restaurant
     }
-    */
-
 }
 
-extension LunchViewController {
-    fileprivate enum Section {
-        case main
+extension LunchViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return CGSize(width: collectionView.bounds.size.width / 2, height: 180)
+        } else if UIDevice.current.userInterfaceIdiom == .phone {
+            return CGSize(width: collectionView.bounds.size.width, height: 180)
+        }
+        return CGSize(width: 0, height: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return restaurants.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+       
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! RestaurantCollectionViewCell
+        cell.restaurant = restaurants[indexPath.row]
+        if let imageURL = restaurants[indexPath.row].backgroundImageURL {
+            cell.downloadImageFrom(urlString: imageURL)
+        }
+        return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        performSegue(withIdentifier: "ShowDetails", sender: cell)
     }
 }

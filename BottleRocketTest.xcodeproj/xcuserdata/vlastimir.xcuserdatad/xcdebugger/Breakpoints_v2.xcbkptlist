@@ -3,4 +3,134 @@
    uuid = "38635C41-290E-4E2E-9E35-31F80E805E51"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C36AFBC8-3CD4-4A79-B9D5-EE44E457A8DE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BottleRocketTest/Persistance/RestaurantsManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "getRestaruants(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0FDDF2F9-14F9-4385-8C35-95E3BB30B3D7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BottleRocketTest/Persistance/CacheManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "cacheData(data:from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0E47C615-D9E9-4D4D-9F2A-8FFA07604BE3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BottleRocketTest/Persistance/CacheManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "cacheData(data:from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DFCB98CE-0A54-4C50-895E-7422CB0F9283"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BottleRocketTest/Persistance/RestaurantsManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "getRestaruants(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0189C33A-428E-4B2F-8701-BC91807B0054"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BottleRocketTest/Persistance/RestaurantsManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "getRestaruants(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "13B64888-84CB-4443-90D5-A787DEDE6656"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BottleRocketTest/Persistance/RestaurantsManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "getRestaruants(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "13B64888-84CB-4443-90D5-A787DEDE6656 - 2fb59211fe3c804a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (BottleRocketTest.Result&lt;Foundation.Data, BottleRocketTest.ResponseError&gt;) -&gt; () in BottleRocketTest.RestaurantsManager.getRestaruants((Swift.Array&lt;BottleRocketTest.Restaurant&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "BottleRocketTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vlastimir/Desktop/BottleRocketTest/BottleRocketTest/Persistance/RestaurantsManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "318">
+               </Location>
+               <Location
+                  uuid = "13B64888-84CB-4443-90D5-A787DEDE6656 - 2fb59211fe3c804a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (BottleRocketTest.Result&lt;Foundation.Data, BottleRocketTest.ResponseError&gt;) -&gt; () in BottleRocketTest.RestaurantsManager.getRestaruants((Swift.Array&lt;BottleRocketTest.Restaurant&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "BottleRocketTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vlastimir/Desktop/BottleRocketTest/BottleRocketTest/Persistance/RestaurantsManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "353">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
