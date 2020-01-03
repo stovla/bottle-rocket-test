@@ -12,7 +12,7 @@ class LunchViewController: UICollectionViewController {
     
     private var restaurants = [Restaurant]()
     private let restaurantManager = RestaurantsManager()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,8 +20,21 @@ class LunchViewController: UICollectionViewController {
         navigationController?.navigationBar.tintColor = .white
         collectionView.backgroundColor = UIColor(named: "MainBrandColor")
         
-        setTabBarFont()
+        setupTabBar()
+        loadData()
+    }
+    
+    private func setupTabBar() {
+        guard let font = UIFont.init(name: "AvenirNext-Regular", size: 10) else { return }
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         
+        let internetsVC = InternetsViewController()
+        let tabBarItem = UITabBarItem(title: "internets", image: UIImage(named: "tab_internets"), tag: 1)
+        internetsVC.tabBarItem = tabBarItem
+        tabBarController?.viewControllers?.append(internetsVC)
+    }
+    
+    private func loadData() {
         collectionView.register(RestaurantCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         DispatchQueue.global().async {
             do {
@@ -40,11 +53,6 @@ class LunchViewController: UICollectionViewController {
                 print(error)
             }
         }
-    }
-    
-    func setTabBarFont() {
-        guard let font = UIFont.init(name: "AvenirNext-Regular", size: 10) else { return }
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -77,7 +85,8 @@ extension LunchViewController: UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! RestaurantCollectionViewCell
-        cell.restaurant = restaurants[indexPath.row]
+        let item = restaurants[indexPath.row]
+        cell.restaurant = item
         if let imageURL = restaurants[indexPath.row].backgroundImageURL {
             cell.downloadImageFrom(urlString: imageURL)
         }

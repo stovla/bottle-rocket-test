@@ -18,6 +18,7 @@
 		0EAB49F823BD59260066CD1F /* UITabBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAB49F723BD59260066CD1F /* UITabBar+Extension.swift */; };
 		0EAB49FB23BD69A00066CD1F /* RestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAB49FA23BD69A00066CD1F /* RestaurantCollectionViewCell.swift */; };
 		0EAB4A0123BDB2160066CD1F /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAB4A0023BDB2160066CD1F /* DetailsViewController.swift */; };
+		0EDD54C023BEF9D40046E2F3 /* InternetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD54BF23BEF9D40046E2F3 /* InternetsViewController.swift */; };
 		0EE27EB423B75C60006E1FB7 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE27EB323B75C60006E1FB7 /* RestaurantModel.swift */; };
 		AC8C78B623BB4547000B9B3E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8C78B523BB4547000B9B3E /* NetworkManager.swift */; };
 		AC8C78B823BB4592000B9B3E /* RestaurantsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8C78B723BB4592000B9B3E /* RestaurantsManager.swift */; };
@@ -38,6 +39,7 @@
 		0EAB49F723BD59260066CD1F /* UITabBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Extension.swift"; sourceTree = "<group>"; };
 		0EAB49FA23BD69A00066CD1F /* RestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		0EAB4A0023BDB2160066CD1F /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		0EDD54BF23BEF9D40046E2F3 /* InternetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetsViewController.swift; sourceTree = "<group>"; };
 		0EE27EB323B75C60006E1FB7 /* RestaurantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
 		AC8C78B523BB4547000B9B3E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		AC8C78B723BB4592000B9B3E /* RestaurantsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsManager.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			children = (
 				0E6DDBEA23B47F10009DD9C7 /* LunchViewController.swift */,
 				0EAB4A0023BDB2160066CD1F /* DetailsViewController.swift */,
+				0EDD54BF23BEF9D40046E2F3 /* InternetsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				0E6DDBEB23B47F10009DD9C7 /* LunchViewController.swift in Sources */,
 				0E6DDBD623B3F916009DD9C7 /* SceneDelegate.swift in Sources */,
 				0EAB49FB23BD69A00066CD1F /* RestaurantCollectionViewCell.swift in Sources */,
+				0EDD54C023BEF9D40046E2F3 /* InternetsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
