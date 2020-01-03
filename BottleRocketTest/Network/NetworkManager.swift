@@ -13,11 +13,6 @@ enum ResponseError: Error {
     case error(Error)
 }
 
-enum Result<Data, Error> {
-    case success(Data)
-    case failure(Error)
-}
-
 struct NetworkManager {
     
     static func load(with url: String, completionHandler: @escaping (Result<Data, ResponseError>) -> Void) {

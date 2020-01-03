@@ -18,17 +18,22 @@ class CacheManager {
         }
     }
     
-    private class func cacheDestinationFileURL(for urlString: String) -> URL {
+    private class func cacheDirectoryFileURLPath(for urlString: String) -> URL {
         let cachePathURL = "\(cacheDirectory)/\(urlString)"
         return URL.init(fileURLWithPath: cachePathURL)
     }
     
     class func cacheData(data: Data, from urlString: String) {
-        let destinationURL = cacheDestinationFileURL(for: urlString)
+        let destinationURL = cacheDirectoryFileURLPath(for: urlString)
         cache.setObject(NSData.init(data: data), forKey: NSString.init(string: urlString))
         do {
             try data.write(to: destinationURL)
         } catch {}
+    }
+    
+    class func cachedImageFrom(urlString: String) -> (image: UIImage, urlString:String)?  {
+        guard let imgData = cachedDataFrom(urlString: urlString), let image = UIImage(data: imgData) else { return nil }
+        return (image, urlString)
     }
     
     class func cachedDataFrom(urlString: String) -> Data? {
@@ -36,22 +41,11 @@ class CacheManager {
             return Data.init(referencing: data)
         } else {
             do {
-                return try Data.init(contentsOf: cacheDestinationFileURL(for: urlString))
+                return try Data.init(contentsOf: cacheDirectoryFileURLPath(for: urlString))
             } catch {
                 
             }
         }
         return nil
-    }
-    
-    class func cachedImageFrom(urlString: String) -> UIImage? {
-        if let imgData = cachedDataFrom(urlString: urlString) {
-            return UIImage.init(data: imgData)
-        }
-        return nil
-    }
-    
-    class func cachedDictionaryFrom(urlString: String) -> [AnyHashable : Any]? {
-        return NSDictionary.init(contentsOfFile: cacheDestinationFileURL(for: urlString).path) as? [AnyHashable : Any] ?? nil
     }
 }

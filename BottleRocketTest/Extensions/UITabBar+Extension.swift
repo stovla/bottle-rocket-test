@@ -14,7 +14,18 @@ class BRUITabBar: UITabBar {
     @IBInspectable
     var tabBarHeight: CGFloat = 50.0
     
+    @IBInspectable
+    var unselectedItemColor: UIColor {
+        set {
+            unselectedItemTintColor = newValue
+        }
+        get {
+            return unselectedItemTintColor!
+        }
+    }
+    
     override func sizeThatFits(_ size: CGSize) -> CGSize {
+        
         guard let window = UIApplication.shared.windows.first else {
             return super.sizeThatFits(size)
         }
@@ -24,22 +35,22 @@ class BRUITabBar: UITabBar {
         }
         return sizeThatFits
     }
-}
-
-@IBDesignable
-class BRBarButtonItem: UIBarButtonItem {
     
-//    @IBInspectable
-//    var barItemFont: UIFont {
-//        set {
-//            
-//            func setTabBarFont() {
-//                guard let font = UIFont.init(name: "AvenirNext-Regular", size: 10) else { return }
-//                UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
-//            }
-//            UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: newValue], for: .normal)
-//        }
-//        get {
-//            return UITabBarItem.titleTextAttributes(self).font        }
-//    }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupCustomTabBar()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        setupCustomTabBar()
+    }
+    
+    private func setupCustomTabBar() {
+        
+        guard let font = UIFont.init(name: "AvenirNext-Regular", size: 10) else { return }
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
+    }
 }

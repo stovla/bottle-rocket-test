@@ -10,45 +10,33 @@ import Foundation
 
 let restaurantUrlString = "https://s3.amazonaws.com/br-codingexams/restaurants.json"
 
-class RestaurantsManager {
+struct RestaurantsManager {
     
-    func getRestaruants(_ completion: @escaping ([Restaurant]) -> Void) {
+    static func getRestaruants(_ completion: @escaping ([Restaurant]) -> Void) {
         
-        if let result = retreiveRestaurantsFromCache() {
-            completion(result)
-            return
-        }
-        
-        NetworkManager.load(with: restaurantUrlString) { [weak self] response in
-            switch response {
-            case .success(let data):
-                let restaurants = self?.decodeData(data) ?? []
-                completion(restaurants)
-            case .failure(let error):
-                print(error)
-                completion([])
+        if let data = CacheManager.cachedDataFrom(urlString: restaurantUrlString) {
+            do {
+                let result = try JSONDecoder().decode(Restaurants.self, from: data)
+                CacheManager.cacheData(data: data, from: restaurantUrlString)
+                completion(result.restaurants)
+            } catch {
+                print("Error: \(error.localizedDescription)")
+            }
+        } else {
+            NetworkManager.load(with: restaurantUrlString) { response in
+                switch response {
+                case .success(let data):
+                    do {
+                        let result = try JSONDecoder().decode(Restaurants.self, from: data)
+                        CacheManager.cacheData(data: data, from: restaurantUrlString)
+                        completion(result.restaurants)
+                    } catch {
+                        print("Error: \(error.localizedDescription)")
+                    }
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
             }
         }
-        
-    }
-    
-    private func decodeData(_ data: (Data)) -> [Restaurant]? {
-        
-        do {
-            let result = try JSONDecoder().decode(Restaurants.self, from: data)
-            CacheManager.cacheData(data: data, from: restaurantUrlString)
-            return result.restaurants
-        } catch {
-            print(error)
-            return nil
-        }
-    }
-    
-    private func retreiveRestaurantsFromCache() -> [Restaurant]? {
-        
-        guard let data = CacheManager.cachedDataFrom(urlString: restaurantUrlString) else {
-            return nil
-        }
-        return self.decodeData(data)
     }
 }
