@@ -15,7 +15,6 @@ extension UIImageView {
         guard let imageURL = URL(string: urlString) else {
             return
         }
-        
         DispatchQueue.global(qos: .userInteractive).async {
             
             guard let imageObj = CacheManager.cachedImageFrom(urlString: urlString)
@@ -31,7 +30,6 @@ extension UIImageView {
                     }).resume()
                     return
             }
-            
             if imageObj.urlString == urlString {
                 self.assignImage(imageObj.image)
             }

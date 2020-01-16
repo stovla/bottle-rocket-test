@@ -27,7 +27,7 @@ class LunchViewController: UICollectionViewController {
     @IBAction func openMapFullScreen(_ sender: UIBarButtonItem) {
         
         let storyBoard = UIStoryboard(name: Identifiers.mainBundle, bundle: nil)
-        let controller = storyBoard.instantiateViewController(withIdentifier: Identifiers.restaurantMap) as! RestaurantsMapViewController
+        guard let controller = storyBoard.instantiateViewController(withIdentifier: Identifiers.restaurantMap) as? RestaurantsMapViewController else { return }
         controller.restaurants = restaurants
         present(controller, animated: true)
     }
@@ -42,7 +42,9 @@ class LunchViewController: UICollectionViewController {
     private func setupTabBar() {
         
         let internetsVC = InternetsViewController()
-        let tabBarItem = UITabBarItem(title: StringConstants.internets, image: UIImage(named: AssetConstants.tabInternets), tag: 1)
+        let tabBarItem = UITabBarItem(title: StringConstants.internets,
+                                      image: UIImage(named: AssetConstants.tabInternets),
+                                      tag: 1)
         internetsVC.tabBarItem = tabBarItem
         let internetsNavigationController = UINavigationController(rootViewController: internetsVC)
         tabBarController?.viewControllers?.append(internetsNavigationController)
@@ -50,7 +52,8 @@ class LunchViewController: UICollectionViewController {
     
     private func loadData() {
         
-        collectionView.register(UINib(nibName: Identifiers.collectionViewCellClass, bundle: nil), forCellWithReuseIdentifier: Identifiers.cellIdentifier)
+        collectionView.register(UINib(nibName: Identifiers.collectionViewCellClass, bundle: nil),
+                                forCellWithReuseIdentifier: Identifiers.cellIdentifier)
         RestaurantsManager.getRestaruants { restaurants in
             DispatchQueue.main.async {
                 self.restaurants = restaurants
@@ -91,7 +94,7 @@ extension LunchViewController: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.cellIdentifier, for: indexPath) as! CollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.cellIdentifier, for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
         let item = restaurants[indexPath.row]
         cell.restaurant = item
         return cell

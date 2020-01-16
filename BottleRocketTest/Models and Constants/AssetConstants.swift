@@ -9,7 +9,6 @@
 import Foundation
 
 struct AssetConstants {
-    
     static let webBack = "ic_webBack"
     static let webForward = "ic_webForward"
     static let webRefresh = "ic_webRefresh"

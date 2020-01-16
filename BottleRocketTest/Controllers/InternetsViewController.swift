@@ -57,7 +57,7 @@ class InternetsViewController: UIViewController, WKNavigationDelegate {
         refreshButton = UIBarButtonItem(image: UIImage(named: AssetConstants.webRefresh), style: .plain, target: webView, action: #selector(webView.reload))
         forwardButton = UIBarButtonItem(image: UIImage(named: AssetConstants.webForward), style: .plain, target: webView, action: #selector(webView.goForward))
         
-        navigationController?.navigationBar.barTintColor = UIColor.appColor(.navBarGreen)
+        navigationController?.navigationBar.barTintColor = .appColor(.navBarGreen)
         navigationController?.navigationBar.tintColor = .white
         navigationItem.leftBarButtonItems = [backButton, refreshButton, forwardButton]
     }

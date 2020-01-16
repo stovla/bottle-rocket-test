@@ -55,9 +55,9 @@ class DetailsViewController: UIViewController {
     @objc private func updateTextColor() {
         
         let isDarkMode: Bool = traitCollection.userInterfaceStyle == .dark
-        restaurantAddressPart1.textColor = isDarkMode ? .white : UIColor.appColor(.textLabelDark)
-        restaurantAddressPart2.textColor = isDarkMode ? .white : UIColor.appColor(.textLabelDark)
-        restaurantPhone.textColor = isDarkMode ? .white : UIColor.appColor(.textLabelDark)
+        restaurantAddressPart1.textColor = isDarkMode ? .white : .appColor(.textLabelDark)
+        restaurantAddressPart2.textColor = isDarkMode ? .white : .appColor(.textLabelDark)
+        restaurantPhone.textColor = isDarkMode ? .white : .appColor(.textLabelDark)
     }
     
     private func updateViews() {
