@@ -20,7 +20,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var restaurantSocialHandler: UILabel!
     
     @IBOutlet weak var mapViewHeightConstraint: NSLayoutConstraint!
-
+    
     var restaurant: Restaurant?
     private var isMapExtended: Bool = false
     
@@ -58,6 +58,8 @@ class DetailsViewController: UIViewController {
         restaurantAddressPart1.textColor = isDarkMode ? .white : .appColor(.textLabelDark)
         restaurantAddressPart2.textColor = isDarkMode ? .white : .appColor(.textLabelDark)
         restaurantPhone.textColor = isDarkMode ? .white : .appColor(.textLabelDark)
+        restaurantSocialHandler.textColor = isDarkMode ? .white : .appColor(.textLabelDark)
+        view.backgroundColor = isDarkMode ? .appColor(.tabBarDark) : .white
     }
     
     private func updateViews() {

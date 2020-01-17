@@ -76,7 +76,7 @@ class LunchViewController: UICollectionViewController {
 extension LunchViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var columnNumber: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 2 : 1
+        var columnNumber: CGFloat = UIDevice.current.orientation.isLandscape || UIDevice.current.userInterfaceIdiom != .phone ? 2 : 1
         // last item to fill the gap
         if !restaurants.count.isMultiple(of: 2) && indexPath.row == restaurants.count - 1 {
             columnNumber = 1
