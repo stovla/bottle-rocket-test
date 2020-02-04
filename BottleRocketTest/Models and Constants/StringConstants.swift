@@ -9,5 +9,5 @@
 import Foundation
 
 struct StringConstants {
-    static let internets = "tab_internets"
+    static let internets = "internets"
 }

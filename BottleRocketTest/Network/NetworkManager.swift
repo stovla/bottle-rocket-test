@@ -21,7 +21,7 @@ struct NetworkManager {
         }
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: .main)
         session.dataTask(with: url) { data, response, error in
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            guard response != nil else {
                 completionHandler(.failure(.networkError))
                 return
             }
