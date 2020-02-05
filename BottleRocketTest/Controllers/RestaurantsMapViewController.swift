@@ -23,15 +23,18 @@ class RestaurantsMapViewController: UIViewController {
         setupMapView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        spanMap()
+    }
+    
+    // MARK: create annotation for each restaurant
     private func setupMapView() {
         guard let restaurants = restaurants else { return }
         
         restaurants.forEach { restaurant in
             createAnnotation(restaurant)
         }
-        
-        guard let first = restaurants.first else { return }
-        spanMap(location: first.location)
     }
     
     private func createAnnotation(_ restaurant: Restaurant) {
@@ -46,9 +49,16 @@ class RestaurantsMapViewController: UIViewController {
         mapView.addAnnotation(annotation)
     }
     
-    private func spanMap(location: RestaurantLocation) {
-        
-        let coordinates = CLLocationCoordinate2D(latitude: location.lat, longitude: location.lng)
+    private func zoomMap(_ location: CLLocation) {
+        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        let region = MKCoordinateRegion (center: location.coordinate, span: span)
+        mapView.setRegion(mapView.regionThatFits(region), animated: true)
+    }
+    
+    // MARK: zooming the map
+    private func spanMap() {
+        guard let first = restaurants?.first else { return }
+        let coordinates = CLLocationCoordinate2D(latitude: first.location.lat, longitude: first.location.lng)
         let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let region = MKCoordinateRegion (center: coordinates, span: span)
         mapView.setRegion(mapView.regionThatFits(region), animated: true)

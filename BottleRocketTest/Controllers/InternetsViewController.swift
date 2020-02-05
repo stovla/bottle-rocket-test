@@ -45,10 +45,8 @@ class InternetsViewController: UIViewController, WKNavigationDelegate {
     }
     
     fileprivate func loadWebPage() {
-        
         guard let url = URL(string: appHomePage) else { return }
         webView.load(URLRequest(url: url))
-        
     }
     
     private func setupNavigationBar() {
@@ -62,6 +60,7 @@ class InternetsViewController: UIViewController, WKNavigationDelegate {
         navigationItem.leftBarButtonItems = [backButton, refreshButton, forwardButton]
     }
     
+    // MARK: webView delegate methods
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
 
         backButton.isEnabled = false

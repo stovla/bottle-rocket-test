@@ -34,11 +34,13 @@ class LunchViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        collectionView.register(UINib(nibName: Identifiers.collectionViewCellClass, bundle: nil),
+        forCellWithReuseIdentifier: Identifiers.cellIdentifier)
         setupTabBar()
         loadData()
     }
     
+    // MARK: Adding viewController to the tabBar
     private func setupTabBar() {
         
         let internetsVC = InternetsViewController()
@@ -51,9 +53,6 @@ class LunchViewController: UICollectionViewController {
     }
     
     private func loadData() {
-        
-        collectionView.register(UINib(nibName: Identifiers.collectionViewCellClass, bundle: nil),
-                                forCellWithReuseIdentifier: Identifiers.cellIdentifier)
         RestaurantsManager.getRestaruants { restaurants in
             DispatchQueue.main.async {
                 self.restaurants = restaurants
@@ -68,11 +67,13 @@ class LunchViewController: UICollectionViewController {
         controller.restaurant = cell.restaurant
     }
     
+    // Invalidates collectionView reload
     override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
         collectionView.collectionViewLayout.invalidateLayout()
     }
 }
 
+// MARK: CollectionView Delegate Methods
 extension LunchViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
