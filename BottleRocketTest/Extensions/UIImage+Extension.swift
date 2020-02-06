@@ -5,18 +5,16 @@
 //  Created by Vlastimir Radojevic on 3/1/20.
 //  Copyright © 2020 Vlastimir. All rights reserved.
 //
+//  Extension on UIImageView to cache an image
 
 import UIKit
 
 extension UIImageView {
-    
     func loadImage(fromURL urlString: String) {
-        
         guard let imageURL = URL(string: urlString) else {
             return
         }
         DispatchQueue.global(qos: .userInteractive).async {
-            
             guard let imageObj = CacheManager.cachedImageFrom(urlString: urlString)
                 else {
                     let request = URLRequest(url: imageURL)
@@ -37,7 +35,6 @@ extension UIImageView {
     }
     
     fileprivate func assignImage(_ image: UIImage) {
-        
         DispatchQueue.main.async {
             if self.image == nil {
                 self.image = image

@@ -18,6 +18,8 @@
 		0EAB4A0123BDB2160066CD1F /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAB4A0023BDB2160066CD1F /* DetailsViewController.swift */; };
 		0EDD54C023BEF9D40046E2F3 /* InternetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD54BF23BEF9D40046E2F3 /* InternetsViewController.swift */; };
 		0EE27EB423B75C60006E1FB7 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE27EB323B75C60006E1FB7 /* RestaurantModel.swift */; };
+		AC3EA0E923EBF83F00992121 /* AnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3EA0E823EBF83F00992121 /* AnimationController.swift */; };
+		AC3EA0EB23EC0DD400992121 /* ValueConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3EA0EA23EC0DD400992121 /* ValueConstants.swift */; };
 		AC43E8C223BF9B9900793E6E /* AssetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43E8C123BF9B9900793E6E /* AssetConstants.swift */; };
 		AC8C78B623BB4547000B9B3E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8C78B523BB4547000B9B3E /* NetworkManager.swift */; };
 		AC8C78B823BB4592000B9B3E /* RestaurantsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8C78B723BB4592000B9B3E /* RestaurantsManager.swift */; };
@@ -44,6 +46,8 @@
 		0EAB4A0023BDB2160066CD1F /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		0EDD54BF23BEF9D40046E2F3 /* InternetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetsViewController.swift; sourceTree = "<group>"; };
 		0EE27EB323B75C60006E1FB7 /* RestaurantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
+		AC3EA0E823EBF83F00992121 /* AnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationController.swift; sourceTree = "<group>"; };
+		AC3EA0EA23EC0DD400992121 /* ValueConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueConstants.swift; sourceTree = "<group>"; };
 		AC43E8C123BF9B9900793E6E /* AssetConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetConstants.swift; sourceTree = "<group>"; };
 		AC8C78B523BB4547000B9B3E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		AC8C78B723BB4592000B9B3E /* RestaurantsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsManager.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 				0EAB49F723BD59260066CD1F /* UITabBar+Extension.swift */,
 				AC8C78BF23BF1D29000B9B3E /* UIColor+Extension.swift */,
 				AC8C78C123BF3BC6000B9B3E /* UIImage+Extension.swift */,
+				AC3EA0E823EBF83F00992121 /* AnimationController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 				0EE27EB323B75C60006E1FB7 /* RestaurantModel.swift */,
 				AC43E8C123BF9B9900793E6E /* AssetConstants.swift */,
 				AC94F44523BF9D6800F9F2C7 /* StringConstants.swift */,
+				AC3EA0EA23EC0DD400992121 /* ValueConstants.swift */,
 			);
 			path = "Models and Constants";
 			sourceTree = "<group>";
@@ -244,6 +250,7 @@
 				AC8C78B623BB4547000B9B3E /* NetworkManager.swift in Sources */,
 				AC43E8C223BF9B9900793E6E /* AssetConstants.swift in Sources */,
 				AC8C78C223BF3BC6000B9B3E /* UIImage+Extension.swift in Sources */,
+				AC3EA0E923EBF83F00992121 /* AnimationController.swift in Sources */,
 				AC8C78B823BB4592000B9B3E /* RestaurantsManager.swift in Sources */,
 				AC94F44623BF9D6800F9F2C7 /* StringConstants.swift in Sources */,
 				0EAB4A0123BDB2160066CD1F /* DetailsViewController.swift in Sources */,
@@ -257,6 +264,7 @@
 				AC8C78C523BF4B73000B9B3E /* CollectionViewCell.swift in Sources */,
 				AC8C78C023BF1D29000B9B3E /* UIColor+Extension.swift in Sources */,
 				0EDD54C023BEF9D40046E2F3 /* InternetsViewController.swift in Sources */,
+				AC3EA0EB23EC0DD400992121 /* ValueConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,7 +416,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vlastimir.r.BottleRocketTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vlastimir.BottleRocket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -428,7 +436,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vlastimir.r.BottleRocketTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vlastimir.BottleRocket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

@@ -5,6 +5,7 @@
 //  Created by Vlastimir Radojevic on 31/12/19.
 //  Copyright © 2019 Vlastimir. All rights reserved.
 //
+//  CacheManager that stores objects to device storage
 
 import UIKit
 

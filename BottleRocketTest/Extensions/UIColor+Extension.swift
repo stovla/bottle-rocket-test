@@ -5,6 +5,7 @@
 //  Created by Vlastimir Radojevic on 3/1/20.
 //  Copyright © 2020 Vlastimir. All rights reserved.
 //
+//  Color assets and extensions
 
 import UIKit
 

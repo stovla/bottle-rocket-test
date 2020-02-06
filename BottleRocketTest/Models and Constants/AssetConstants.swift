@@ -14,4 +14,5 @@ struct AssetConstants {
     static let webRefresh = "ic_webRefresh"
     static let tabInternets = "tab_internets"
     static let tabLunch = "tab_lunch"
+    static let mapPointer = "map-pointer"
 }

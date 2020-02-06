@@ -9,8 +9,9 @@
 import UIKit
 import MapKit
 
-class DetailsViewController: UIViewController {
+class DetailsViewController: UIViewController, MKMapViewDelegate {
 
+    // MARK: - Properties
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var restaurantName: UILabel!
     @IBOutlet weak var restaurantCategory: UILabel!
@@ -18,17 +19,17 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var restaurantAddressPart2: UILabel!
     @IBOutlet weak var restaurantPhone: UILabel!
     @IBOutlet weak var restaurantSocialHandler: UILabel!
-    
     @IBOutlet weak var mapViewHeightConstraint: NSLayoutConstraint!
-    
     var restaurant: Restaurant?
     private var isMapExtended: Bool = false
-    var location = CLLocation();
+    var location:CLLocation = CLLocation();
     
+    // MARK: - IBAction methods
     @IBAction func showFullMap(_ sender: UIBarButtonItem) {
         expandMap(!isMapExtended)
     }
     
+    // MARK: - ViewController lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
@@ -42,12 +43,12 @@ class DetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         // updating text color whether we are using dark theme
         NotificationCenter.default.addObserver(self, selector: #selector(updateTextColor), name: UIApplication.didBecomeActiveNotification, object: nil)
         updateTextColor()
     }
     
+    // MARK: - UI update methods
     private func updateViews() {
         restaurantPhone.text = ""
         restaurantSocialHandler.text = ""
@@ -68,7 +69,6 @@ class DetailsViewController: UIViewController {
         }
     }
     
-    // MARK: updating colors based on the dark/light mode on the device
     @objc private func updateTextColor() {
         let isDarkMode: Bool = traitCollection.userInterfaceStyle == .dark
         restaurantAddressPart1.textColor = isDarkMode ? .white : .appColor(.textLabelDark)
@@ -78,8 +78,9 @@ class DetailsViewController: UIViewController {
         view.backgroundColor = isDarkMode ? .appColor(.tabBarDark) : .white
     }
     
-    // MARK: MapView methods
+    // MARK: - MapView methods
     private func setupMapView() {
+        mapView.delegate = self
         guard let lat = restaurant?.location.lat, let long = restaurant?.location.lng else { return }
         location = CLLocation(latitude: lat, longitude: long)
         let annotation = MKPointAnnotation()
@@ -99,5 +100,14 @@ class DetailsViewController: UIViewController {
             self.mapViewHeightConstraint.priority = UILayoutPriority(expand ? 500 : 1000)
             self.view.layoutIfNeeded()
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseIdentifier = "annotationView"
+        let view = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        view.displayPriority = .required
+        view.image = UIImage(named: AssetConstants.mapPointer)
+        view.annotation = annotation
+        return view
     }
 }

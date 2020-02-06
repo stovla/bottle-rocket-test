@@ -9,36 +9,35 @@
 import UIKit
 import MapKit
 
-class RestaurantsMapViewController: UIViewController {
+class RestaurantsMapViewController: UIViewController, MKMapViewDelegate {
 
+    // MARK: - Properties
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var dismissButton: UIButton!
-    
     var restaurants: [Restaurant]?
     
+    // MARK: - UIViewController override methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        dismissButton.layer.cornerRadius = 10
+        view.backgroundColor = .init(white: 0, alpha: 0)
+        transitioningDelegate = self
         setupMapView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        spanMap()
+        perform(#selector(zoomMap), with: nil, afterDelay: animationDuration)
     }
     
-    // MARK: create annotation for each restaurant
+    // MARK: - MapView setup
     private func setupMapView() {
+        mapView.delegate = self
         guard let restaurants = restaurants else { return }
-        
         restaurants.forEach { restaurant in
             createAnnotation(restaurant)
         }
     }
     
     private func createAnnotation(_ restaurant: Restaurant) {
-        
         let lat = restaurant.location.lat
         let lng = restaurant.location.lng
         
@@ -49,23 +48,33 @@ class RestaurantsMapViewController: UIViewController {
         mapView.addAnnotation(annotation)
     }
     
-    private func zoomMap(_ location: CLLocation) {
-        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-        let region = MKCoordinateRegion (center: location.coordinate, span: span)
-        mapView.setRegion(mapView.regionThatFits(region), animated: true)
+    // MARK: - MapView methods
+    @objc private func zoomMap() {
+        mapView.showAnnotations(mapView.annotations, animated: true)
     }
     
-    // MARK: zooming the map
-    private func spanMap() {
-        guard let first = restaurants?.first else { return }
-        let coordinates = CLLocationCoordinate2D(latitude: first.location.lat, longitude: first.location.lng)
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-        let region = MKCoordinateRegion (center: coordinates, span: span)
-        mapView.setRegion(mapView.regionThatFits(region), animated: true)
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseIdentifier = "annotationView"
+        let view = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        view.displayPriority = .required
+        view.image = UIImage(named: AssetConstants.mapPointer)
+        view.annotation = annotation
+        view.canShowCallout = true
+        return view
     }
     
+    // MARK: - IBAction methods
     @IBAction func closeMapView(_ sender: UIButton) {
-        
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension RestaurantsMapViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return AnimationController(animationType: .present)
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return AnimationController(animationType: .dismiss)
     }
 }

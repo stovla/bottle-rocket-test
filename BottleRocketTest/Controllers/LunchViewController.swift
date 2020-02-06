@@ -7,31 +7,33 @@
 //
 
 import UIKit
-
+// MARK: - Private identifiers
 private struct Identifiers {
-    static let restaurantMap = "RestaurantsMap"
-    static let mainBundle = "Main"
-    static let collectionViewCellClass = "CollectionViewCell"
-    static let cellIdentifier = "cell"
-    static let segueDetailsIdentifier = "ShowDetails"
+    static let restaurantMap: String = "RestaurantsMap"
+    static let mainBundle: String = "Main"
+    static let collectionViewCellClass: String = "CollectionViewCell"
+    static let cellIdentifier: String = "cell"
+    static let segueDetailsIdentifier: String = "ShowDetails"
 }
 
 class LunchViewController: UICollectionViewController {
-    
-    private var restaurants = [Restaurant]() {
+    // MARK: - Properties
+    private var restaurants: [Restaurant] = [] {
         didSet {
             collectionView.reloadData()
         }
     }
     
+    // MARK: - IBAction methods
     @IBAction func openMapFullScreen(_ sender: UIBarButtonItem) {
-        
         let storyBoard = UIStoryboard(name: Identifiers.mainBundle, bundle: nil)
         guard let controller = storyBoard.instantiateViewController(withIdentifier: Identifiers.restaurantMap) as? RestaurantsMapViewController else { return }
         controller.restaurants = restaurants
+        controller.modalPresentationStyle = .overFullScreen
         present(controller, animated: true)
     }
     
+    // MARK: - ViewController override methods
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(UINib(nibName: Identifiers.collectionViewCellClass, bundle: nil),
@@ -40,9 +42,12 @@ class LunchViewController: UICollectionViewController {
         loadData()
     }
     
-    // MARK: Adding viewController to the tabBar
+    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+           collectionView.collectionViewLayout.invalidateLayout()
+       }
+    
+    // MARK: - UI update methods
     private func setupTabBar() {
-        
         let internetsVC = InternetsViewController()
         let tabBarItem = UITabBarItem(title: StringConstants.internets,
                                       image: UIImage(named: AssetConstants.tabInternets),
@@ -52,6 +57,7 @@ class LunchViewController: UICollectionViewController {
         tabBarController?.viewControllers?.append(internetsNavigationController)
     }
     
+    // MARK: - Private API
     private func loadData() {
         RestaurantsManager.getRestaruants { restaurants in
             DispatchQueue.main.async {
@@ -60,20 +66,16 @@ class LunchViewController: UICollectionViewController {
         }
     }
     
+    // MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         guard let cell = sender as? CollectionViewCell else { return }
         guard let controller = segue.destination as? DetailsViewController else { return }
         controller.restaurant = cell.restaurant
     }
-    
-    // Invalidates collectionView reload
-    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
-        collectionView.collectionViewLayout.invalidateLayout()
-    }
+   
 }
 
-// MARK: CollectionView Delegate Methods
+// MARK: - CollectionView Delegate Methods
 extension LunchViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

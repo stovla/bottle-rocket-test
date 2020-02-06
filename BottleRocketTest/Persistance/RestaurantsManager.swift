@@ -5,15 +5,15 @@
 //  Created by Vlastimir Radojevic on 31/12/19.
 //  Copyright © 2019 Vlastimir. All rights reserved.
 //
+//  RestaurantsManager: used for retreiving restaurants from the specified URL
 
 import Foundation
 
-let restaurantUrlString = "https://s3.amazonaws.com/br-codingexams/restaurants.json"
+let restaurantUrlString: String = "https://s3.amazonaws.com/br-codingexams/restaurants.json"
 
 struct RestaurantsManager {
     
     static func getRestaruants(_ completion: @escaping ([Restaurant]) -> Void) {
-        
         if let data = CacheManager.cachedDataFrom(urlString: restaurantUrlString) {
             do {
                 let result = try JSONDecoder().decode(Restaurants.self, from: data)

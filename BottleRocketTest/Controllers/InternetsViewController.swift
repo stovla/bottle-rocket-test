@@ -11,30 +11,39 @@ import WebKit
 
 class InternetsViewController: UIViewController, WKNavigationDelegate {
 
-    private var appHomePage = "https://www.bottlerocketstudios.com"
+    // MARK: - Properties
+    private let appHomePage: String = "https://www.bottlerocketstudios.com"
+    private let webView: WKWebView = WKWebView()
+    private lazy var backButton: UIBarButtonItem = {
+        let backButton = UIBarButtonItem(image: UIImage(named: AssetConstants.webBack), style: .plain, target: webView, action: #selector(webView.goBack))
+        backButton.isEnabled = false
+        return backButton
+    }()
+    private lazy var refreshButton: UIBarButtonItem = {
+        let refreshButton = UIBarButtonItem(image: UIImage(named: AssetConstants.webRefresh), style: .plain, target: webView, action: #selector(webView.reload))
+        refreshButton.isEnabled = false
+        return refreshButton
+    }()
+    private lazy var forwardButton: UIBarButtonItem = {
+        let forwardButton = UIBarButtonItem(image: UIImage(named: AssetConstants.webForward), style: .plain, target: webView, action: #selector(webView.goForward))
+        forwardButton.isEnabled = false
+        return forwardButton
+    }()
     
-    private var webView = WKWebView()
-    
-    private var backButton = UIBarButtonItem()
-    private var refreshButton = UIBarButtonItem()
-    private var forwardButton = UIBarButtonItem()
-    
+    // MARK: - ViewController lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupNavigationBar()
         loadWebPage()
     }
     
     override func loadView() {
-        
         view = UIView()
         setupWebView()
     }
     
+    // MARK: - UI update methods
     private func setupWebView() {
-        
-        webView = WKWebView()
         view.addSubview(webView)
         webView.navigationDelegate = self
         webView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,26 +59,15 @@ class InternetsViewController: UIViewController, WKNavigationDelegate {
     }
     
     private func setupNavigationBar() {
-        
-        backButton = UIBarButtonItem(image: UIImage(named: AssetConstants.webBack), style: .plain, target: webView, action: #selector(webView.goBack))
-        refreshButton = UIBarButtonItem(image: UIImage(named: AssetConstants.webRefresh), style: .plain, target: webView, action: #selector(webView.reload))
-        forwardButton = UIBarButtonItem(image: UIImage(named: AssetConstants.webForward), style: .plain, target: webView, action: #selector(webView.goForward))
-        
         navigationController?.navigationBar.barTintColor = .appColor(.navBarGreen)
         navigationController?.navigationBar.tintColor = .white
         navigationItem.leftBarButtonItems = [backButton, refreshButton, forwardButton]
     }
     
     // MARK: webView delegate methods
-    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-
-        backButton.isEnabled = false
-        forwardButton.isEnabled = false
-    }
-    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        
         backButton.isEnabled = webView.canGoBack
         forwardButton.isEnabled = webView.canGoForward
+        refreshButton.isEnabled = true
     }
 }

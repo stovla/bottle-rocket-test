@@ -132,6 +132,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="closeMapView:" destination="AAX-6H-7WQ" eventType="touchUpInside" id="6IS-Zd-XBL"/>
                                 </connections>
@@ -149,7 +154,6 @@
                         <viewLayoutGuide key="safeArea" id="ISL-Lk-CTv"/>
                     </view>
                     <connections>
-                        <outlet property="dismissButton" destination="SkJ-kU-kc5" id="0eX-h9-Nbw"/>
                         <outlet property="mapView" destination="dMr-4e-60u" id="H5P-R5-a3n"/>
                     </connections>
                 </viewController>
